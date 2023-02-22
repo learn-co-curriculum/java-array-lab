@@ -38,17 +38,23 @@ For example, open the unit test for `BuggyLab`:
 ```java
 class BuggyLabTest {
 
-    @Test
-    void updateArrayTest() {
+  @Test
+  void updateArrayTest() {
 
-        // Given an array of integers
-        int [] numbers = { 5, 10, 15, 20 };
+    // Given an array of integers
+    int [] numbers = { 5, 10, 15, 20 };
 
-        // Expected array of integers
-        int [] expectedArray = { 10, 20, 30, 40 };
+    // Copy of numbers array to ensure the original array is not changed
+    int [] numbersCopy = numbers.clone();
 
-        assertArrayEquals(expectedArray, BuggyLab.updateArray(numbers));
-    }
+    // Expected array of integers
+    int [] expectedArray = { 10, 20, 30, 40 };
+
+    assertArrayEquals(expectedArray, BuggyLab.updateArray(numbers));
+
+    // Assert to make sure the original numbers array was not changed.
+    assertArrayEquals(numbers, numbersCopy);
+  }
 }
 ```
 
@@ -77,7 +83,16 @@ Place some breakpoints in the program and run it with the debugger to determine
 and isolate the bug. Once you have found the issue, make your changes within the
 buggy program. Ensure that the unit test passes.
 
-Important Note: **Do not modify the `BuggyLabTest.java` file.**
+Notes on debugging and fixing:
+
+- Hint: Place the breakpoint at the `for` loop and use the step-over action to
+  step-through the code.
+- When fixing the bug, do **not** change the `numbers` array that was passed in.
+  To ensure that the `numbers` array has not been modified, note the
+  `numbersCopy` variable. This is a clone or copy of the `numbers` array. After
+  the `updateArray()` method has been called, we'll also assert to make sure the
+  `numbers` array has not been changed.
+- **Do not modify the `BuggyLabTest.java` file.**
 
 ### Part Two: Find the Maximum
 
@@ -124,7 +139,7 @@ Enter a number:
 Enter a number:
 9
 Enter a number:
-18
+52
 Enter a number:
 28
 Enter a number:
@@ -132,6 +147,6 @@ Enter a number:
 Enter a number:
 47
 Enter a number:
-52
+18
 The minimum value is 52
 ```
