@@ -148,5 +148,5 @@ Enter a number:
 47
 Enter a number:
 18
-The minimum value is 52
+The maximum value is 52
 ```
